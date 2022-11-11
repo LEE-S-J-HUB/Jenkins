@@ -3,11 +3,10 @@ pipeline {
   stages {
     stage('Packer') {
       steps {
-        withAWS(credentials: 'AWS_Credentials', region: 'ap-northeast-2') {
+        withAWS(credentials: 'AWS_Credentials') {
         sh """
         echo $AWS_ACCESS_KEY_ID
         echo $AWS_SECRET_ACCESS_KEY
-        echo $region
         """
       }
     }
