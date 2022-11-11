@@ -1,18 +1,14 @@
 pipeline {
   agent any
-   withCredentials([usernamePassword(
-      credentialsId: credentials('mzc-trg-lsj'),
-      accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-      secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-    }
   stages {
     stage('Packer') {
       steps {
+        withAWS(credentials: 'AWS_Credentials', region: 'ap-northeast-2') {
         sh """
         #!/bin/bash
         cd packer_build_test
         packer init .
-        packer build --var access_key=${AWS_ACCESS_KEY_ID} secret_key=${AWS_SECRET_ACCESS_KEY} region=${region} .
+        packer build .
         """
       }
     }
