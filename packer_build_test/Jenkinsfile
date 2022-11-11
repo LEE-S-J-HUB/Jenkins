@@ -10,7 +10,7 @@ pipeline {
         #!/bin/bash
         cd packer_build_test
         packer init .
-        packer build --var profile=${env.AWS_PROFILE} .
+        packer build .
         """
       }
     }
