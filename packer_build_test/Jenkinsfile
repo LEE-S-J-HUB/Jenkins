@@ -2,13 +2,13 @@ pipeline {
   agent any
 
   stages {
-    stage('Packer - Build Docker Image') {
+    stage('Packer') {
       steps {
         sh """
         #!/bin/bash
         cd packer_build_test
         packer init .
-        packer build -force .
+        packer build aws-ubuntu.pkr.hcl
         """
       }
     }
