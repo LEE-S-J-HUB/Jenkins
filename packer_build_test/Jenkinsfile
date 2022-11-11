@@ -5,9 +5,8 @@ pipeline {
       steps {
         withAWS(credentials: '$AWS_Credentials', region: 'ap-northeast-2') {
         sh """
-        cd packer_build_test
-        packer init .
-        packer build .
+        echo 'AWS_ACCESS_KEY_ID',
+        echo 'AWS_SECRET_ACCESS_KEY'
         """
       }
     }
