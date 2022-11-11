@@ -12,11 +12,16 @@ variable "ami_prefix" {
   default = "learn-packer-linux-aws-redis"
 }
 
+variable "profile" {
+    type    = string
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
 source "amazon-ebs" "ubuntu" {
+  profile       = var.profile
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "ap-northeast-2"

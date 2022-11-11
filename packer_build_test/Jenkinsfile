@@ -1,6 +1,8 @@
 pipeline {
   agent any
-
+  environment {
+    AWS_PROFILE     = credentials('AWS_PROFILE')
+  }
   stages {
     stage('Packer') {
       steps {
@@ -8,7 +10,7 @@ pipeline {
         #!/bin/bash
         cd packer_build_test
         packer init .
-        packer build aws-ubuntu.pkr.hcl
+        packer build --var profile=${env.AWS_PROFILE} .
         """
       }
     }
