@@ -12,11 +12,21 @@ variable "ami_prefix" {
   default = "learn-packer-linux-aws-redis"
 }
 
+variable "access_key" {
+    type    = string
+}
+
+variable "secret_key" {
+    type    = string
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
 source "amazon-ebs" "ubuntu" {
+  access_key    = var.access_key
+  secret_key    = var.secret_key
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "ap-northeast-2"
