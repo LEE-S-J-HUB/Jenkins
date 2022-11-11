@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Packer') {
       steps {
-        withAWS(credentials: 'AWS_Credentials', region: 'ap-northeast-2') {
+        withAWS(credentials: "$AWS_Credentials", region: "ap-northeast-2") {
         sh """
         cd packer_build_test
         packer init .
