@@ -8,7 +8,7 @@ pipeline {
         #!/bin/bash
         cd packer_build_test
         packer init .
-        packer build --var access_key=$AWS_ACCESS_KEY_ID secret_key=$AWS_SECRET_ACCESS_KEY .
+        packer build -force --var access_key=$AWS_ACCESS_KEY_ID secret_key=$AWS_SECRET_ACCESS_KEY .
         """
       }
     }
