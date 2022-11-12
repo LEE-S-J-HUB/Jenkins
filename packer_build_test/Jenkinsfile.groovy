@@ -7,7 +7,7 @@ pipeline {
         sh """
         #!/bin/bash
         cd packer_build_test
-        packer init .
+        ls -al
         packer build packer_build_test/aws-ubuntu.pkr.hcl
         """
       }
