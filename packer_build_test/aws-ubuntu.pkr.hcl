@@ -7,6 +7,10 @@ packer {
   }
 }
 
+variable "region" {
+    type = string
+    default = "ap-northeast-2"
+}
 variable "ami_prefix" {
   type    = string
   default = "learn-packer-linux-aws-redis"
@@ -17,6 +21,7 @@ locals {
 }
 
 source "amazon-ebs" "ubuntu" {
+  region        = var.region
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   source_ami_filter {
